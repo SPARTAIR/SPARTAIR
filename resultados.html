@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sparta Ibarra</title>
+    <link rel="stylesheet" href="CSS/style-resultados.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="JS/auth.js"></script>
+    <script> checkAuth(); </script>
+</head>
+<body>
+    <header class="ibarra-header" style="background: linear-gradient(90deg, #D32F2F 0%, #8b0000 100%); padding: 0 40px; height: 70px; display: flex; justify-content: space-between; align-items: center;">
+        
+        <div onclick="location.href='index.html'" style="display:flex; align-items:center; gap:15px; cursor: pointer; text-decoration: none;">
+            <img src="logo.png" alt="Logo" style="height:42px;">
+            <div>
+                <h1 style="font-family:'Teko'; font-size:1.8rem; color:white; margin:0; line-height:0.9;">SPARTA ACADEMY</h1>
+                <h2 style="font-family:'Teko'; font-size:1rem; color:rgba(255,255,255,0.8); margin:0;">PANEL ADMIN</h2>
+            </div>
+        </div>
+        
+        <div class="desktop-menu">
+            <button class="user-btn" onclick="logout()" style="background:#b71c1c; border:1px solid rgba(255,255,255,0.3); color:white; padding:8px 15px; border-radius:5px; cursor:pointer;">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+        </div>
+    </header>
+
+    <main class="resultados-main">
+        <h1>REPORTE DE INTENTOS</h1>
+        
+        <div class="filtros-container">
+            <div class="filtro-grupo">
+                <i class="fas fa-map-marker-alt"></i>
+                <select id="filtro-ciudad">
+                    <option value="Todas">Todas las Ciudades</option>
+                    <option value="Ibarra">Ibarra</option>
+                    <option value="Tulcán">Tulcán</option>
+                </select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <i class="fas fa-book"></i>
+                <select id="filtro-materia">
+                    <option value="Todas">Todas las Materias</option>
+                </select>
+            </div>
+
+            <div class="filtro-grupo">
+                <i class="fas fa-search"></i>
+                <input type="text" id="filtro-nombre" placeholder="Buscar estudiante...">
+            </div>
+
+            <button id="descargar-pdf-btn" class="pdf-button"><i class="fas fa-file-pdf"></i> REPORTE PDF</button>
+            <button id="descargar-general-csv-btn" class="csv-button"><i class="fas fa-file-csv"></i> CSV</button>
+        </div>
+
+        <div id="loading-spinner" style="text-align:center; margin:20px;">
+            <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#d32f2f;"></i>
+            <p>Cargando datos...</p>
+        </div>
+
+        <div id="reporte-container"></div>
+    </main>
+
+    <canvas id="hidden-chart-canvas" width="400" height="200" style="display:none;"></canvas>
+
+    <script src="JS/script-resultados.js"></script>
+</body>
+</html>
