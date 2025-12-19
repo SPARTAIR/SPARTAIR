@@ -1,0 +1,33 @@
+[
+  {
+    "usuario": "milton",
+    "contrasena": "root",
+    "nombre": "Milton Fuel",
+    "rol": "admin",
+    "ciudad": "Tulcán"
+  },
+  {
+    "usuario": "capitan",
+    "contrasena": "capitan",
+    "nombre": "Capitán",
+    "rol": "admin",
+    "ciudad": "Ibarra"
+  },
+  {
+    "usuario": "michael_arcos",
+    "contrasena": "michael_arcos",
+    "nombre": "Michael Arcos",
+    "rol": "aspirante",
+    "ciudad": "Tulcán"
+  },
+  {
+    "_comment": "USUARIOS DE LA CIUDAD DE IBARRA"
+  },
+  {
+    "usuario": "prueba",
+    "contrasena": "prueba",
+    "nombre": "Prueba",
+    "rol": "aspirante",
+    "ciudad": "Ibarra"
+  }
+]
