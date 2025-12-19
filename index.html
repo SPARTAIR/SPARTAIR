@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="CSS/style-home.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Teko:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Teko:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <script src="JS/auth.js"></script>
@@ -16,7 +16,7 @@
 <body>
 
     <header class="ibarra-header">
-        <div class="logo-zone" onclick="location.href='index.html'">
+        <div class="logo-zone" onclick="location.href='index.html'" style="cursor: pointer;">
             <img src="logo.png" alt="Sparta Logo">
             <div class="brand-text">
                 <h1>SPARTA</h1>
@@ -35,8 +35,10 @@
         <aside class="sidebar-profile">
             <div class="profile-card">
                 <div class="profile-avatar"><i class="fas fa-user-astronaut"></i></div>
-                <h3 id="sidebar-name">CADETE</h3>
-                <span class="badge">ASPIRANTE ACTIVO</span>
+                <h3 id="sidebar-name">USUARIO</h3>
+                
+                <span class="badge" id="role-badge">CARGANDO...</span>
+                
                 <div class="stats-row">
                     <div class="stat"><strong>NIVEL</strong><span>1</span></div>
                     <div class="stat"><strong>SEDE</strong><span>IBARRA</span></div>
@@ -138,13 +140,26 @@
         </main>
     </div>
 
+    <script src="JS/script-home.js"></script> 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const user = getUserInfo();
             if (user) {
+                // Nombre
                 document.getElementById('sidebar-name').textContent = user.nombre.split(' ')[0].toUpperCase();
-                if (user.rol === 'admin') document.getElementById('admin-panel-btn').style.display = 'flex';
+                
+                // ROL DINÁMICO (LA SOLUCIÓN)
+                const roleBadge = document.getElementById('role-badge');
+                if (user.rol === 'admin') {
+                    roleBadge.textContent = "ADMINISTRADOR";
+                    roleBadge.style.background = "#D32F2F"; // Rojo para admin
+                    document.getElementById('admin-panel-btn').style.display = 'flex';
+                } else {
+                    roleBadge.textContent = "ASPIRANTE ACTIVO";
+                    roleBadge.style.background = "#333"; // Negro para aspirantes
+                }
             }
+
             setInterval(() => {
                 const now = new Date();
                 document.getElementById('clock-display').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
